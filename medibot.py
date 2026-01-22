@@ -106,7 +106,8 @@ import os
 import streamlit as st
 
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain.chains import RetrievalQA
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain.chains import create_retrieval_chain
 from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import PromptTemplate
 from langchain_groq import ChatGroq
@@ -242,21 +243,23 @@ def main():
                 st.error("❌ Failed to load the vector store")
                 return
 
-            qa_chain = RetrievalQA.from_chain_type(
-                llm=load_llm(temperature),
-                chain_type="stuff",
-                retriever=vectorstore.as_retriever(search_kwargs={"k": k_value}),
-                return_source_documents=True,
-                chain_type_kwargs={"prompt": set_custom_prompt(CUSTOM_PROMPT_TEMPLATE)},
-            )
+            retriever = vectorstore.as_retriever(search_kwargs={"k": k_value})
+
+            document_chain = create_stuff_documents_chain(
+                             llm=load_llm(temperature),
+                         prompt=set_custom_prompt(CUSTOM_PROMPT_TEMPLATE),
+                        )
+
+            qa_chain = create_retrieval_chain(
+                            retriever,
+                         document_chain
+                        )
 
             # Use hybrid retriever to include PDFs + CSVs
             with st.spinner("🔍 Analyzing medical knowledge..."):
                 docs = hybrid_retriever(vectorstore, prompt, k_value)
-                response = qa_chain.combine_documents_chain.run(
-                           input_documents=docs,
-                           question=prompt
-                        )
+                result = qa_chain.invoke({"input": prompt})
+                response = result["answer"]
 
 
             # Show assistant reply
@@ -281,3 +284,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
