@@ -1,28 +1,15 @@
-# Streamlit
-streamlit==1.23.1
+streamlit==1.53.0
 
-# LangChain (all core functionality included)
-langchain==0.0.288
-
-# HuggingFace integration
-transformers==4.33.2
-torch==2.1.0
+langchain==0.1.16
+langchain-core==0.1.53
+langchain-community==0.0.38
 langchain-huggingface==0.0.3
+langchain-groq==0.1.0
 
-# FAISS for vector search
 faiss-cpu==1.7.4
+sentence-transformers==2.7.0
+pypdf==3.17.4
 
-# Sentence embeddings
-sentence-transformers==2.2.2
-
-# PDF parsing
-pypdf==3.16.0
-
-# Pydantic (force v1 to avoid 'fields_set' error)
-pydantic<2.0
-
-# Optional: Environment utilities
-tqdm==4.66.1
 
 
 
