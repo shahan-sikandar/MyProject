@@ -25,7 +25,7 @@ def get_vectorstore():
 # Custom Prompt
 # -------------------
 def set_custom_prompt(custom_prompt_template):
-    return PromptTemplate(template=custom_prompt_template, input_variables=["context", "question"])
+    return PromptTemplate(template=custom_prompt_template, input_variables=["context", "input"])
 
 
 # -------------------
@@ -154,7 +154,7 @@ def main():
             with st.spinner("🔍 Analyzing medical knowledge..."):
                     result = qa_chain.invoke({"input": prompt})
                     response = result["answer"]
-
+                    docs = result.get("context", [])
 
 
 
@@ -181,6 +181,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
