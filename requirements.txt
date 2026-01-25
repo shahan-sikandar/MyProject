@@ -1,11 +1,14 @@
-langchain
-langchain-community
-langchain-huggingface
-faiss-cpu
-pypdf
-sentence-transformers
-langchain-groq
-streamlit
+streamlit==1.53.0
+langchain==0.1.105
+langchain-core==0.1.53
+langchain-community==0.0.38
+langchain-huggingface==0.0.3
+langchain-groq==0.1.0
+faiss-cpu==1.7.4
+sentence-transformers==2.7.0
+pypdf==3.17.4
+pydantic<2.0
+
 
 
 
