@@ -2,8 +2,8 @@ import os
 import streamlit as st
 
 from langchain_huggingface import HuggingFaceEmbeddings
-#from langchain.chains import RetrievalQA
-from langchain.retrievers import RetrievalQA
+from langchain.chains import RetrievalQA
+#from langchain.retrievers import RetrievalQA
 from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import PromptTemplate
 from langchain_groq import ChatGroq
@@ -178,4 +178,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
