@@ -1,13 +1,12 @@
 streamlit==1.53.1
-langchain>=0.3.0,<1.0
-langchain-core
-langchain-community
-langchain-huggingface
-langchain-groq
-faiss-cpu
-pypdf
-sentence-transformers
-pydantic<2.0
+langchain>=0.3.18,<1.0
+pydantic>=2.7.4,<3.0.0
+faiss-cpu==1.7.4
+sentence-transformers==2.7.0
+pypdf==3.17.4
+
+
+
 
 
 
